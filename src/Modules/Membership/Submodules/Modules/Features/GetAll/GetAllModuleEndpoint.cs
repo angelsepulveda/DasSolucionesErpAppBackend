@@ -7,7 +7,7 @@ public class GetAllModuleEndpoint : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet(
-                "/api/modules",
+                "/api/modules/get-all",
                 async (ISender sender) =>
                 {
                     List<ModuleDto> modules = await sender.Send(new GetAllModuleQuery());

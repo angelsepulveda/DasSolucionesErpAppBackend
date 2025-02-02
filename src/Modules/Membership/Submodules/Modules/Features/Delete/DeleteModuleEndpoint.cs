@@ -5,7 +5,7 @@ public class DeleteModuleEndpoint : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapDelete(
-                "/api/modules/{Id:guid}",
+                "/api/modules/delete/{Id:guid}",
                 async (Guid Id, ISender sender) =>
                 {
                     await sender.Send(new DeleteModuleCommand(Id));

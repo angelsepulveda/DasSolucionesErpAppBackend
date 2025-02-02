@@ -5,7 +5,7 @@ public class RegisterModuleEndpoint : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapPost(
-                "/api/modules",
+                "/api/modules/register",
                 async (RegisterModulePayload payload, ISender sender) =>
                 {
                     await sender.Send(new RegisterModuleCommand(payload));

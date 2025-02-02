@@ -5,7 +5,7 @@ public class UpdateModuleEndpoint : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapPut(
-                "/api/modules",
+                "/api/modules/update",
                 async (UpdateModulePayload payload, ISender sender) =>
                 {
                     await sender.Send(new UpdateModuleCommand(payload));
