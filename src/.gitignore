@@ -14,7 +14,7 @@ nupkg/
 # Visual Studio
 .vs/
 
-src/Bootstrapper/Api/appsettings.json
+/Bootstrapper/Api/appsettings.json
 
 # Fleet
 .fleet/
