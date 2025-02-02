@@ -14,6 +14,8 @@ nupkg/
 # Visual Studio
 .vs/
 
+src/Bootstrapper/Api/appsettings.json
+
 # Fleet
 .fleet/
 
@@ -41,3 +43,6 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+
+src/Bootstrapper/Api/appsettings.json
+src/Bootstrapper/Api/appsettings.json

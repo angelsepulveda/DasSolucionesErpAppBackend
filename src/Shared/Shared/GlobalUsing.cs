@@ -12,3 +12,4 @@ global using Microsoft.Extensions.Logging;
 global using System.Reflection;
 global using Carter;
 global using Shared.Behaviors;
+global using Shared.Contracts;
