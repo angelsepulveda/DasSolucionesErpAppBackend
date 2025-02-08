@@ -8,9 +8,9 @@ public class DeleteModuleEndpoint : ICarterModule
                 "/api/modules/delete/{Id:guid}",
                 async (Guid Id, ISender sender) =>
                 {
-                    await sender.Send(new DeleteModuleCommand(Id));
+                    Unit result = await sender.Send(new DeleteModuleCommand(Id));
 
-                    return Results.Ok();
+                    return Results.Ok(result);
                 }
             )
             .WithName("DeleteModule")

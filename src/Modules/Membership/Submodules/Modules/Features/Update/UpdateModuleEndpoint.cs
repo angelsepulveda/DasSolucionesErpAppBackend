@@ -8,9 +8,9 @@ public class UpdateModuleEndpoint : ICarterModule
                 "/api/modules/update",
                 async (UpdateModulePayload payload, ISender sender) =>
                 {
-                    await sender.Send(new UpdateModuleCommand(payload));
+                    Unit result = await sender.Send(new UpdateModuleCommand(payload));
 
-                    return Results.Ok();
+                    return Results.Ok(result);
                 }
             )
             .WithName("UpdateModule")

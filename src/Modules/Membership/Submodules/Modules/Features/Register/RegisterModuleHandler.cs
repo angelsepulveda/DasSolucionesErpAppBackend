@@ -1,8 +1,10 @@
-﻿namespace Membership.Submodules.Modules.Features.Register;
+﻿using Membership.Submodules.Modules.Dtos;
+
+namespace Membership.Submodules.Modules.Features.Register;
 
 public sealed record RegisterModulePayload(string Name);
 
-public sealed record RegisterModuleCommand(RegisterModulePayload Payload) : ICommand;
+public sealed record RegisterModuleCommand(RegisterModulePayload Payload) : ICommand<ModuleDto>;
 
 public class RegisterModuleCommandValidator : AbstractValidator<RegisterModuleCommand>
 {
@@ -13,9 +15,9 @@ public class RegisterModuleCommandValidator : AbstractValidator<RegisterModuleCo
 }
 
 internal sealed class RegisterModuleHandler(MembershipDbContext dbContext)
-    : ICommandHandler<RegisterModuleCommand>
+    : ICommandHandler<RegisterModuleCommand, ModuleDto>
 {
-    public async Task<Unit> Handle(
+    public async Task<ModuleDto> Handle(
         RegisterModuleCommand request,
         CancellationToken cancellationToken
     )
@@ -26,6 +28,6 @@ internal sealed class RegisterModuleHandler(MembershipDbContext dbContext)
 
         await dbContext.SaveChangesAsync(cancellationToken);
 
-        return Unit.Value;
+        return new ModuleDto(module.Id, module.Name);
     }
 }
