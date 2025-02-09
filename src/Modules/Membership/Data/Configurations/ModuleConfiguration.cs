@@ -10,7 +10,11 @@ public class ModuleConfiguration : IEntityTypeConfiguration<ModuleModel>
 
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.Id).HasColumnType("char(36)").HasColumnName("id");
+        builder
+            .Property(p => p.Id)
+            .HasConversion(v => v.ToString(), v => Guid.Parse(v))
+            .HasColumnType("char(36)")
+            .HasColumnName("id");
 
         builder
             .Property(p => p.Name)

@@ -23,7 +23,7 @@ internal sealed class UpdateActionHandler(
     {
         ActionModel? actionUpdated = await actionQueryRepository.GetByIdAsync(request.Payload.Id);
 
-        if (actionUpdated is null || actionUpdated.Status)
+        if (actionUpdated is null || actionUpdated.Status == false)
             throw new ActionNotFoundException(request.Payload.Id);
 
         actionUpdated.Update(request.Payload.Name);
