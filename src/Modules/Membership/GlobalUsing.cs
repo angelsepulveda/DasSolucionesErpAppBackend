@@ -15,3 +15,4 @@ global using Shared.Contracts.CQRS;
 global using Carter;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Routing;
+global using Membership.Submodules.Actions;

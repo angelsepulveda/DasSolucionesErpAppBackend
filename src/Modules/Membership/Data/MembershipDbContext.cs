@@ -1,5 +1,3 @@
-using Membership.Submodules.Modules.Models;
-
 namespace Membership.Data;
 
 public class MembershipDbContext : DbContext
@@ -8,6 +6,7 @@ public class MembershipDbContext : DbContext
         : base(options) { }
 
     public DbSet<ModuleModel> Modules => Set<ModuleModel>();
+    public DbSet<ActionModel> Actions => Set<ActionModel>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

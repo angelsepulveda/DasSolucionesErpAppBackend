@@ -1,5 +1,4 @@
 using Membership.Submodules.Modules.Contracts.Repositories;
-using Membership.Submodules.Modules.Models;
 
 namespace Membership.Submodules.Modules.Data.Repositories;
 

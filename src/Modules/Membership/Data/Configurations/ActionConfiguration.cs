@@ -2,11 +2,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Membership.Data.Configurations;
 
-public class ModuleConfiguration : IEntityTypeConfiguration<ModuleModel>
+public class ActionConfiguration : IEntityTypeConfiguration<ActionModel>
 {
-    public void Configure(EntityTypeBuilder<ModuleModel> builder)
+    public void Configure(EntityTypeBuilder<ActionModel> builder)
     {
-        builder.ToTable("modules");
+        builder.ToTable("actions");
 
         builder.HasKey(p => p.Id);
 

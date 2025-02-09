@@ -9,6 +9,7 @@ public static class DependencyInjection
     )
     {
         services.AddModulesServices();
+        services.AddActionsServices();
 
         return services;
     }
