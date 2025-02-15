@@ -1,5 +1,3 @@
-using Membership.Submodules.Modules.Models;
-
 namespace Membership.Data;
 
 public class MembershipDbContext : DbContext
@@ -9,6 +7,7 @@ public class MembershipDbContext : DbContext
 
     public DbSet<ModuleModel> Modules => Set<ModuleModel>();
     public DbSet<Section> Sections => Set<Section>();
+    public DbSet<ActionModel> Actions => Set<ActionModel>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -1,5 +1,3 @@
-using Membership.Submodules.Modules.Models;
-
 namespace Membership.Submodules.Modules.Contracts.Repositories;
 
 public interface IModuleQueryRepository
