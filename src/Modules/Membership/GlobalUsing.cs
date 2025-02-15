@@ -15,3 +15,5 @@ global using Shared.Contracts.CQRS;
 global using Carter;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Routing;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Membership.Submodules.Sections;

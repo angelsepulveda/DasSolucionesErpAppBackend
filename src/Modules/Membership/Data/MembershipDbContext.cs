@@ -8,6 +8,7 @@ public class MembershipDbContext : DbContext
         : base(options) { }
 
     public DbSet<ModuleModel> Modules => Set<ModuleModel>();
+    public DbSet<Section> Sections => Set<Section>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

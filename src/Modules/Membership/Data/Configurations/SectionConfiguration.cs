@@ -1,10 +1,10 @@
 namespace Membership.Data.Configurations;
 
-public class ModuleConfiguration : IEntityTypeConfiguration<ModuleModel>
+public class SectionConfiguration : IEntityTypeConfiguration<Section>
 {
-    public void Configure(EntityTypeBuilder<ModuleModel> builder)
+    public void Configure(EntityTypeBuilder<Section> builder)
     {
-        builder.ToTable("modules");
+        builder.ToTable("sections");
 
         builder.HasKey(p => p.Id);
 
@@ -20,6 +20,19 @@ public class ModuleConfiguration : IEntityTypeConfiguration<ModuleModel>
             .HasColumnName("name")
             .HasMaxLength(50)
             .IsRequired();
+
+        builder
+            .Property(p => p.Key)
+            .HasColumnType("varchar(150)")
+            .HasColumnName("key")
+            .HasMaxLength(150)
+            .IsRequired();
+
+        builder
+            .Property(p => p.Description)
+            .HasColumnType("varchar(256)")
+            .HasColumnName("description")
+            .HasMaxLength(256);
 
         builder.Property(p => p.Status).IsRequired().HasDefaultValue(true);
     }
