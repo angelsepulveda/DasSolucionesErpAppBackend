@@ -8,6 +8,6 @@ internal sealed class SectionQueryEfCoreRepository(MembershipDbContext dbContext
 
     public async Task<Section?> GetByKeyAsync(string key) =>
         await dbContext.Sections
-            .Where(x => x.Key.Equals(key) && x.Status == false)
+            .Where(x => x.Key.Equals(key) && x.Status == true)
             .FirstOrDefaultAsync();
 }

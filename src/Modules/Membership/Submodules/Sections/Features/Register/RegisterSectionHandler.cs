@@ -10,7 +10,7 @@ public class RegisterSectionCommandValidator : AbstractValidator<RegisterSection
     {
         RuleFor(x => x.Payload.Name).NotEmpty().MaximumLength(50);
         RuleFor(x => x.Payload.Key).NotEmpty().MaximumLength(150);
-        RuleFor(x => x.Payload.Description).MinimumLength(150);
+        RuleFor(x => x.Payload.Description).MaximumLength(150);
     }
 }
 

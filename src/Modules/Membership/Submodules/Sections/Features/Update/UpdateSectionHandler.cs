@@ -28,7 +28,7 @@ internal sealed class UpdateSectionHandler(
     {
         Section? sectionUpdated = await sectionQueryRepository.GetByIdAsync(request.Payload.Id);
 
-        if (sectionUpdated is null || sectionUpdated.Status)
+        if (sectionUpdated is null)
             throw new SectionNotFoundException(request.Payload.Id);
 
         Section? sectionAlreadyKey = await sectionQueryRepository.GetByKeyAsync(

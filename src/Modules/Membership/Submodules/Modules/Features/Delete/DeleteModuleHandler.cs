@@ -22,7 +22,7 @@ internal sealed class DeleteModuleHandler(
     {
         ModuleModel? moduleDeleted = await moduleQueryRepository.GetByIdAsync(request.Id);
 
-        if (moduleDeleted is null)
+        if (moduleDeleted is null || moduleDeleted.Status == false)
             throw new ModuleNotFoundException(request.Id);
 
         moduleDeleted.Delete();

@@ -8,8 +8,6 @@ builder.Services.AddMediatRWithAssemblies(membershipAssembly);
 
 builder.Services.AddMembershipModule(builder.Configuration);
 
-builder.Services.AddExceptionHandler<CustomExceptionHandler>();
-
 builder.Services.AddOpenApi();
 
 builder.Services.AddSwagger();
@@ -25,6 +23,8 @@ builder.Services.AddCors(options =>
         }
     );
 });
+
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 WebApplication app = builder.Build();
 
@@ -42,7 +42,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("all");
 
 app.MapCarter();
-
+app.UseExceptionHandler(options => { });
 app.UseMembershipModule();
 
 app.Run();

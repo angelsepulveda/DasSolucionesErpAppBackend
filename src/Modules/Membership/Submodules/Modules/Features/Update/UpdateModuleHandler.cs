@@ -26,7 +26,7 @@ internal sealed class UpdateModuleHandler(
     {
         ModuleModel? moduleUpdated = await moduleQueryRepository.GetByIdAsync(request.Payload.Id);
 
-        if (moduleUpdated is null || moduleUpdated.Status)
+        if (moduleUpdated is null || moduleUpdated.Status == false)
             throw new ModuleNotFoundException(request.Payload.Id);
 
         moduleUpdated.Update(request.Payload.Name);
