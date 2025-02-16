@@ -3,6 +3,7 @@ using System;
 using Membership.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Membership.Data.Migrations
 {
     [DbContext(typeof(MembershipDbContext))]
-    partial class MembershipDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250216203346_PermissionMigrations")]
+    partial class PermissionMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,11 +178,16 @@ namespace Membership.Data.Migrations
                         .HasColumnType("char(36)")
                         .HasColumnName("permission_id");
 
+                    b.Property<string>("PermissionId1")
+                        .HasColumnType("char(36)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ActionId");
 
                     b.HasIndex("PermissionId");
+
+                    b.HasIndex("PermissionId1");
 
                     b.ToTable("permissions__actions", "Membership");
                 });
@@ -245,20 +253,31 @@ namespace Membership.Data.Migrations
             modelBuilder.Entity("Membership.Submodules.Permissions.PermissionAction", b =>
                 {
                     b.HasOne("Membership.Submodules.Actions.ActionModel", "Action")
-                        .WithMany()
+                        .WithMany("PermissionsActions")
                         .HasForeignKey("ActionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("FK_PermissionsActions_Action");
 
                     b.HasOne("Membership.Submodules.Permissions.Permission", "Permission")
-                        .WithMany("Actions")
+                        .WithMany("PermissionsActions")
                         .HasForeignKey("PermissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("FK_PermissionsActions_Permission");
+
+                    b.HasOne("Membership.Submodules.Permissions.Permission", null)
+                        .WithMany("Actions")
+                        .HasForeignKey("PermissionId1");
 
                     b.Navigation("Action");
 
                     b.Navigation("Permission");
+                });
+
+            modelBuilder.Entity("Membership.Submodules.Actions.ActionModel", b =>
+                {
+                    b.Navigation("PermissionsActions");
                 });
 
             modelBuilder.Entity("Membership.Submodules.Modules.Models.ModuleModel", b =>
@@ -269,6 +288,8 @@ namespace Membership.Data.Migrations
             modelBuilder.Entity("Membership.Submodules.Permissions.Permission", b =>
                 {
                     b.Navigation("Actions");
+
+                    b.Navigation("PermissionsActions");
                 });
 #pragma warning restore 612, 618
         }

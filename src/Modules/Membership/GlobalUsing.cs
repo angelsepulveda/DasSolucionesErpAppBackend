@@ -18,3 +18,4 @@ global using Microsoft.AspNetCore.Routing;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Membership.Submodules.Sections;
 global using Membership.Submodules.Actions;
+global using Membership.Submodules.Permissions;

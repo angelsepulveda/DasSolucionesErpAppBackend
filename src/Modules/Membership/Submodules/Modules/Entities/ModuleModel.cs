@@ -5,6 +5,8 @@ public class ModuleModel : Entity<Guid>
     public string Name { get; private set; }
     public bool Status { get; private set; }
 
+    public virtual ICollection<Permission> Permissions { get; set; } = [];
+
     private ModuleModel(Guid id, string name, bool status)
     {
         Id = id;
