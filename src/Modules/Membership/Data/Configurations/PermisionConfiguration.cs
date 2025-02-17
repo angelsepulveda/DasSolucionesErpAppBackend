@@ -42,12 +42,5 @@ public class PermissionConfiguration : IEntityTypeConfiguration<Permission>
             .HasMaxLength(256);
 
         builder.Property(p => p.Status).IsRequired().HasDefaultValue(true);
-
-        builder
-            .HasOne(p => p.Module)
-            .WithMany(m => m.Permissions)
-            .HasForeignKey(p => p.ModuleId)
-            .HasConstraintName("FK_Permissions_Module")
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }

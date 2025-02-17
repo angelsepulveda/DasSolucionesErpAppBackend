@@ -8,8 +8,6 @@ public class Permission : Aggregate<Guid>
     public string Key { get; private set; }
     public string? Description { get; private set; }
 
-    public virtual ModuleModel Module { get; set; }
-
     private readonly List<PermissionAction> _actions = new();
     public IReadOnlyList<PermissionAction> Actions => _actions.AsReadOnly();
 

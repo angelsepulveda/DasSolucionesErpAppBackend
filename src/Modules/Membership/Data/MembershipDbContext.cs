@@ -8,6 +8,8 @@ public class MembershipDbContext : DbContext
     public DbSet<ModuleModel> Modules => Set<ModuleModel>();
     public DbSet<Section> Sections => Set<Section>();
     public DbSet<ActionModel> Actions => Set<ActionModel>();
+    public DbSet<PermissionAction> PermissionActions => Set<PermissionAction>();
+    public DbSet<Permission> Permissions => Set<Permission>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

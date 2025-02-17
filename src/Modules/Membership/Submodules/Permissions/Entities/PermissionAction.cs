@@ -5,9 +5,6 @@ public class PermissionAction : Entity<Guid>
     public Guid PermissionId { get; private set; }
     public Guid ActionId { get; private set; }
 
-    public virtual ActionModel Action { get; set; }
-    public virtual Permission Permission { get; set; }
-
     private PermissionAction(Guid id, Guid permissionId, Guid actionId)
     {
         Id = id;
