@@ -17,4 +17,22 @@ public class MembershipDbContext : DbContext
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(builder);
     }
+
+    public async Task ExecuteTransactionAsync(
+        Func<Task> action,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var transaction = await Database.BeginTransactionAsync(cancellationToken);
+        try
+        {
+            await action();
+            await transaction.CommitAsync(cancellationToken);
+        }
+        catch
+        {
+            await transaction.RollbackAsync(cancellationToken);
+            throw;
+        }
+    }
 }
