@@ -1,4 +1,4 @@
 ejecucion para crear migraciones
-
 dotnet ef migrations add InitialMigrations -p src/Modules/Membership -s src/Bootstrapper/Api -o Data/Migrations
+
 

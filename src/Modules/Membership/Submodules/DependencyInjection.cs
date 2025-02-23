@@ -11,6 +11,7 @@ public static class DependencyInjection
         services.AddModulesServices();
         services.AddSectionsServices();
         services.AddActionsServices();
+        services.AddPermissionsServices();
 
         return services;
     }

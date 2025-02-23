@@ -141,8 +141,6 @@ namespace Membership.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ModuleId");
-
                     b.ToTable("permissions", "Membership");
                 });
 
@@ -176,8 +174,6 @@ namespace Membership.Data.Migrations
                         .HasColumnName("permission_id");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ActionId");
 
                     b.HasIndex("PermissionId");
 
@@ -230,40 +226,13 @@ namespace Membership.Data.Migrations
                     b.ToTable("sections", "Membership");
                 });
 
-            modelBuilder.Entity("Membership.Submodules.Permissions.Permission", b =>
-                {
-                    b.HasOne("Membership.Submodules.Modules.Models.ModuleModel", "Module")
-                        .WithMany("Permissions")
-                        .HasForeignKey("ModuleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("FK_Permissions_Module");
-
-                    b.Navigation("Module");
-                });
-
             modelBuilder.Entity("Membership.Submodules.Permissions.PermissionAction", b =>
                 {
-                    b.HasOne("Membership.Submodules.Actions.ActionModel", "Action")
-                        .WithMany()
-                        .HasForeignKey("ActionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Membership.Submodules.Permissions.Permission", "Permission")
+                    b.HasOne("Membership.Submodules.Permissions.Permission", null)
                         .WithMany("Actions")
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Action");
-
-                    b.Navigation("Permission");
-                });
-
-            modelBuilder.Entity("Membership.Submodules.Modules.Models.ModuleModel", b =>
-                {
-                    b.Navigation("Permissions");
                 });
 
             modelBuilder.Entity("Membership.Submodules.Permissions.Permission", b =>
